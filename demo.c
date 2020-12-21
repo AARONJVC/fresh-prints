@@ -16,9 +16,10 @@ Date Modified: 20 Dec 2020
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <time.h>
 #include "generic_prints.h"
 #include "silly_prints.h"
-
 
 //---------------------------------DEFINITIONS
 
@@ -38,12 +39,16 @@ int main(int argc, char * argv[])
 {
 	//------------------------------SECTION
 
+	// Seeding pseudorandom generation
+	srand(time(0));
+
 	center_print("WELCOME", 24);
 
-	timed_print("I'm a fast print\n", 2);
+	//timed_print("I'm a fast print\n", 2);
 
-	timed_print("I'm a slow print\n", 10);
+	//timed_print("I'm a slow print\n", 10);
 
+	/*
 	timed_print("", 2);
 
 	timed_print("\n", 2);
@@ -107,12 +112,19 @@ int main(int argc, char * argv[])
 	timed_print("ABCDEFGHIJKLM\n", 0.0002);
 
 	timed_print("ABCDEFGHIJKLMN\n", 0.0002);
+	*/
 
-	timed_print("A long message printed in a short amount of time\n", 0.5);
+	//timed_print("A long message printed in a short amount of time\n", 0.5);
 
-	timed_print("An even longer message printed in a disproportionately longer amount of time\n", 3);
+	//timed_print("An even longer message printed in a disproportionately longer amount of time\n", 3);
 
-	sleepy_print("I'm sleepy\n", 0.1);
+	//sleepy_print("I'm sleepy\n", 0.1);
+
+	scream_print("ouch", 0.25, 0.01, 0.5);
+
+	scream_print("a", 0.5, 0.01, 0.5);
+
+	//scream_print("ouch", 0.5, 0.00001, 0.999999);
 
 	return EXIT_SUCCESS;
 }
