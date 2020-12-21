@@ -46,48 +46,70 @@ int sleepy_print(char * s, float f)
 	return 0;
 }
 
-int scream_print(char * s, float v0, float acc, float prob)
+int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
 {
   // String length
   int l = 0;
 
-  if(s == NULL || !(l = strlen(s)) || v0 < 0 || acc <= 0 || prob < 0 || prob > 1)
+  if(s == NULL || !(l = strlen(s)) || v0 < 0 || vf < 0 || accel_i < 0 || const_i < 0)
   {
     return -1;
   }
 
   // Conversion to microseconds
-  int delay = (int)(v0 * 1000000);
-  int acc_unit = (int)(acc * 1000000);
+  int v_usec = (int)(v0 * 1000000);
+  int vf_usec = (int)(vf * 1000000);
 
-  // Number of iterations to execute
-  // Enough that the delay will approach 0
-  int iters = delay / acc_unit;
+  int delta = 0;
+
+  float prob_delta = 0;
+
+  if(accel_i)
+  {
+    // The change to apply to v0 to accelerate it to vf in accel_i iterations
+    delta = (vf_usec - v_usec) / accel_i;
+
+    prob_delta = 1.0 / accel_i;
+  }
+
+  printf("V0: %i, VF: %i, PD: %f\n\n", v_usec, vf_usec, prob_delta);
 
   float temp;
 
-  for(int i = 0; i < iters; ++i)
+  float prob = 0;
+
+  for(int i = 0; i < accel_i; ++i)
   {
     for(int j = 0; j < l; ++j)
     {
         // Randomly print the jth char of s as uppercase or lowercase
         temp = (float)rand() / RAND_MAX;
 
-        printf("%c", temp < prob ? s[j] : toupper(s[j]));
+        printf("%c", temp > prob ? s[j] : toupper(s[j]));
 
         fflush(stdout);
 
-        usleep(delay);
+        usleep(v_usec);
     }
 
-    // Prob gradually decreases to make uppercase more likely
-    prob *= prob;
+    // Prob increases at a constant rate
+    prob += prob_delta;
 
-    // Delay decreases at a constant rate
-    delay -= acc_unit;
+    // velocity changes at a constant rate
+    v_usec += delta;
   }
 
-  printf("\n");
+  for(int i = 0; i < const_i; ++i)
+  {
+    for(int j = 0; j < l; ++j)
+    {
+        printf("%c", toupper(s[j]));
+
+        fflush(stdout);
+
+        usleep(vf_usec);
+    }
+  }
 
   return 0;
 }

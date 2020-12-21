@@ -120,11 +120,35 @@ int main(int argc, char * argv[])
 
 	//sleepy_print("I'm sleepy\n", 0.1);
 
-	scream_print("ouch", 0.25, 0.01, 0.5);
+	scream_print("ouch", 0.25, 0.05, 10, 10);
 
-	scream_print("a", 0.5, 0.01, 0.5);
+	printf("\n");
 
-	//scream_print("ouch", 0.5, 0.00001, 0.999999);
+	scream_print("a", 0.1, 0.01, 640, 1280);
+
+	printf("\n");
+
+	scream_print("h", 0.1, 0.01, 640, 320);
+
+	printf("\n");
+
+	scream_print("a", 0.1, 0.01, 0, 320);
+
+	printf("\n");
+
+	//scream_print("a", 0.1, 0.01, 320, 0);
+
+	printf("\n");
+
+	//scream_print("a", 0.1, 0.3, 0, 320);
+
+	printf("\n");
+
+	//scream_print("a", 0.1, 0.3, 320, 0);
+
+	printf("\n");
+
+	//scream_print("a", 0.1, 0, 320, 0);
 
 	return EXIT_SUCCESS;
 }
