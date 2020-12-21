@@ -12,7 +12,7 @@ Institution:   n/a
 Date Modified: 20 Dec 2020
 */
 
- //---------------------------------PREPROCESSOR DIRECTIVES
+//---------------------------------PREPROCESSOR DIRECTIVES
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -36,7 +36,7 @@ int main(int argc, char * argv[])
 {
 	//------------------------------SECTION
 
-	center_print("Hello!", 24);
+	center_print("Hello!", 4);
 
 	return EXIT_SUCCESS;
 }

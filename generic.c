@@ -16,6 +16,7 @@ Date Modified: 20 Dec 2020
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "generic.h"
 
 //---------------------------------DISPLAY FUNCTIONS
