@@ -44,7 +44,7 @@ int main(int argc, char * argv[])
 
 	center_print("WELCOME", 24);
 
-	//timed_print("I'm a fast print\n", 2);
+	timed_print("I'm a fast print\n", 2);
 
 	//timed_print("I'm a slow print\n", 10);
 
@@ -114,41 +114,41 @@ int main(int argc, char * argv[])
 	timed_print("ABCDEFGHIJKLMN\n", 0.0002);
 	*/
 
-	//timed_print("A long message printed in a short amount of time\n", 0.5);
+	timed_print("A long message printed in a short amount of time\n", 0.5);
 
-	//timed_print("An even longer message printed in a disproportionately longer amount of time\n", 3);
+	timed_print("An even longer message printed in a disproportionately longer amount of time\n", 5);
 
-	//sleepy_print("I'm sleepy\n", 0.1);
+	sleepy_print("I'm sleepy\n", 0.1);
 
 	scream_print("ouch", 0.25, 0.05, 10, 10);
 
 	printf("\n");
 
-	scream_print("a", 0.1, 0.01, 640, 1280);
+	scream_print("a", 0.1, 0.01, 64, 128);
 
 	printf("\n");
 
-	scream_print("h", 0.1, 0.01, 640, 320);
+	scream_print("h", 0.1, 0.01, 64, 32);
 
 	printf("\n");
 
-	scream_print("a", 0.1, 0.01, 0, 320);
+	scream_print("a", 0.1, 0.01, 0, 32);
 
 	printf("\n");
 
-	//scream_print("a", 0.1, 0.01, 320, 0);
+	scream_print("a", 0.1, 0.01, 32, 0);
 
 	printf("\n");
 
-	//scream_print("a", 0.1, 0.3, 0, 320);
+	scream_print("a", 0.1, 0.3, 0, 32);
 
 	printf("\n");
 
-	//scream_print("a", 0.1, 0.3, 320, 0);
+	scream_print("a", 0.1, 0.3, 32, 0);
 
 	printf("\n");
 
-	//scream_print("a", 0.1, 0, 320, 0);
+	scream_print("a", 0.1, 0, 32, 0);
 
 	return EXIT_SUCCESS;
 }

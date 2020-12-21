@@ -72,7 +72,7 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
     //prob_delta = 1.0 / accel_i;
   }
 
-  printf("V0: %i, VF: %i, PD: %i\n\n", v_usec, vf_usec, delta);
+  //printf("V0: %i, VF: %i, PD: %i\n\n", v_usec, vf_usec, delta);
 
   float temp;
 
