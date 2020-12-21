@@ -2,14 +2,14 @@
 //---------------------------------INFORMATION HEADER
 
 /*
-Title:         < file title >
-Project:       < project title >
-Description:   < file description >
+Title:         silly_prints.h
+Project:       Fresh Prints
+Description:   Fun and useless print functions
 
 Author:        Aaron Van Cleave
 Institution:   n/a
 
-Date Modified: < date last modified >
+Date Modified: 20 Dec 2020
 */
 
 //---------------------------------PREPROCESSOR DIRECTIVES
@@ -24,7 +24,10 @@ Date Modified: < date last modified >
 
 //---------------------------------STRUCTS
 
-//---------------------------------X FUNCTIONS
+//---------------------------------TIMED FUNCTIONS
+
+// Prints string s letter-by-letter, spaced apart, at intervals of f seconds
+void sleepy_print(char * s, float f);
 
 //---------------------------------Y FUNCTIONS
 

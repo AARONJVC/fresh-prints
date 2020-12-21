@@ -2,9 +2,9 @@
 //---------------------------------INFORMATION HEADER
 
 /*
-Title:         generic.h
+Title:         silly_prints.c
 Project:       Fresh Prints
-Description:   General-purpose print utilities
+Description:   Fun and useless print functions
 
 Author:        Aaron Van Cleave
 Institution:   n/a
@@ -14,25 +14,35 @@ Date Modified: 20 Dec 2020
 
 //---------------------------------PREPROCESSOR DIRECTIVES
 
-#ifndef GENERIC_PRINT_UTILS
-#define GENERIC_PRINT_UTILS
-
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include "silly_prints.h"
 
-//---------------------------------DEFINITIONS
+//---------------------------------TIMED FUNCTIONS
 
-//---------------------------------STRUCTS
+void sleepy_print(char * s, float f)
+{
+  if(s == NULL )
+  {
+    return;
+  }
 
-//---------------------------------DISPLAY FUNCTIONS
+  int l = strlen(s);
 
-// A centered header of n char spaces or the length of string s, whichever is longer
-void center_print(char * s, int n);
+  for(int i = 0; i < l; i++)
+  {
+    printf("%c", s[i]);
+
+    sleep(f);
+  }
+
+  printf("\n");
+}
 
 //---------------------------------Y FUNCTIONS
 
 //---------------------------------Z FUNCTIONS
-
-#endif
 
 //---------------------------------END

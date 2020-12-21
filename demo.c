@@ -16,7 +16,9 @@ Date Modified: 20 Dec 2020
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "generic.h"
+#include "generic_prints.h"
+#include "silly_prints.h"
+
 
 //---------------------------------DEFINITIONS
 
@@ -36,7 +38,13 @@ int main(int argc, char * argv[])
 {
 	//------------------------------SECTION
 
-	center_print("Hello!", 4);
+	center_print("WELCOME", 24);
+
+	timed_print("I'm sleepy\n", 2);
+
+	timed_print("I'm sleepy\n", 10);
+
+	timed_print("A long message printed in a short amount of time\n", 0.5);
 
 	return EXIT_SUCCESS;
 }
