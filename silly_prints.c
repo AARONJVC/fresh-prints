@@ -62,30 +62,30 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
 
   int delta = 0;
 
-  float prob_delta = 0;
+  //float prob_delta = 0;
 
   if(accel_i)
   {
     // The change to apply to v0 to accelerate it to vf in accel_i iterations
     delta = (vf_usec - v_usec) / accel_i;
 
-    prob_delta = 1.0 / accel_i;
+    //prob_delta = 1.0 / accel_i;
   }
 
-  printf("V0: %i, VF: %i, PD: %f\n\n", v_usec, vf_usec, prob_delta);
+  printf("V0: %i, VF: %i, PD: %i\n\n", v_usec, vf_usec, delta);
 
   float temp;
 
-  float prob = 0;
+  const float prob_const = (float)v_usec / RAND_MAX;
 
   for(int i = 0; i < accel_i; ++i)
   {
     for(int j = 0; j < l; ++j)
     {
         // Randomly print the jth char of s as uppercase or lowercase
-        temp = (float)rand() / RAND_MAX;
+        temp = (float)rand() * prob_const;
 
-        printf("%c", temp > prob ? s[j] : toupper(s[j]));
+        printf("%c", temp < v_usec ? s[j] : toupper(s[j]));
 
         fflush(stdout);
 
@@ -93,7 +93,7 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
     }
 
     // Prob increases at a constant rate
-    prob += prob_delta;
+    //prob += prob_delta;
 
     // velocity changes at a constant rate
     v_usec += delta;
