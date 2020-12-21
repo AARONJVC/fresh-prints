@@ -60,25 +60,25 @@ int timed_print(char * s, float f)
 
   int l = strlen(s);
 
+	int interval = (int)(f * 1000000);
+
 	// Avoid division by 0: print nothing in f seconds
-	if(l == 0)
+	if(l)
 	{
-		usleep(f * 1000000);
-		return 0;
+		// Calculate time interval between each character in microseconds
+		interval /= (l + 1);
 	}
 
-	// Calculate time interval between each character in microseconds
-	int interval = (f / l) * 1000000;
+	usleep(interval);
 
-	printf("Interval is %i microseconds\n\n", interval);
-
-  for(int i = 0; i < l; ++i)
+	// Only function calls with nonzero-length strings enter here
+	for(int i = 0; i < l; ++i)
   {
-		usleep(interval);
-
 		printf("%c", s[i]);
 
 		fflush(stdout);
+
+		usleep(interval);
   }
 
 	return 0;
