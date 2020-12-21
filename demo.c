@@ -40,11 +40,17 @@ int main(int argc, char * argv[])
 
 	center_print("WELCOME", 24);
 
-	timed_print("I'm sleepy\n", 2);
+	timed_print("I'm a fast print\n", 2);
 
-	timed_print("I'm sleepy\n", 10);
+	timed_print("I'm slow print\n", 10);
 
 	timed_print("A long message printed in a short amount of time\n", 0.5);
+
+	timed_print("An even longer message printed in a disproportionately longer amount of time\n", 3);
+
+	sleepy_print("I'm sleepy\n", 0.1);
+
+
 
 	return EXIT_SUCCESS;
 }

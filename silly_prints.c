@@ -22,23 +22,27 @@ Date Modified: 20 Dec 2020
 
 //---------------------------------TIMED FUNCTIONS
 
-void sleepy_print(char * s, float f)
+int sleepy_print(char * s, float f)
 {
-  if(s == NULL )
+  if(s == NULL || f < 0)
   {
-    return;
+    return -1;
   }
 
   int l = strlen(s);
 
-  for(int i = 0; i < l; i++)
-  {
-    printf("%c", s[i]);
+  int interval = f * 1000000;
 
-    sleep(f);
+  for(int i = 0; i < l; ++i)
+  {
+		usleep(interval);
+
+		printf("%c ", s[i]);
+
+		fflush(stdout);
   }
 
-  printf("\n");
+	return 0;
 }
 
 //---------------------------------Y FUNCTIONS

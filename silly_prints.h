@@ -27,7 +27,7 @@ Date Modified: 20 Dec 2020
 //---------------------------------TIMED FUNCTIONS
 
 // Prints string s letter-by-letter, spaced apart, at intervals of f seconds
-void sleepy_print(char * s, float f);
+int sleepy_print(char * s, float f);
 
 //---------------------------------Y FUNCTIONS
 
