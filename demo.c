@@ -39,19 +39,19 @@ char ** g_all[3] = {g_generic, g_silly, NULL};
 //----------USER INPUT FUNCTIONS
 
 // Gets command line input from user
-int get_input();
+int get_input(char * buffer);
 
 // Validates a string from user
-int validate_string();
+int validate_string(char * s);
 
 // Validates a float from user
-int validate_float();
+int validate_float(char * s, float * f);
 
 // Validates an int from user
-int validate_int();
+int validate_int(char * s, int * i);
 
-// Gets a float from user
-//int get_float();
+// Validates a char from user
+int validate_char(char * s, char * c);
 
 //----------Y FUNCTIONS
 
@@ -255,16 +255,66 @@ int get_input(char * buffer)
 	return status;
 }
 
-int validate_string()
+int validate_string(char * s)
 {
+	return s == NULL ? -1 : 0;
+}
+
+int validate_float(char * s, float * f)
+{
+	if(s == NULL || !strlen(s))
+	{
+		return -1;
+	}
+
+	char * temp;
+
+	float result = strtof(s, &temp);
+
+	// Accept 0 when it is returned
+	if(!result && strchr(s, '0') == NULL)
+	{
+		return -1;
+	}
+
+	*f = result;
+
 	return 0;
 }
 
-int validate_float()
+int validate_int(char * s, int * i)
 {
+	if(s == NULL || !strlen(s))
+	{
+		return -1;
+	}
+
+	char * temp;
+
+	int result = strtol(s, &temp, 10);
+
+	// Accept 0 when it is returned
+	if(!result && strchr(s, '0') == NULL)
+	{
+		return -1;
+	}
+
+	*i = result;
+
 	return 0;
 }
 
+int validate_char(char * s, char * c)
+{
+	if(s == NULL || !strlen(s))
+	{
+		return -1;
+	}
+
+	*c = s[0];
+
+	return 0;
+}
 
 //----------Y FUNCTIONS
 
