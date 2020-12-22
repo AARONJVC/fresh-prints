@@ -23,7 +23,7 @@ Date Modified: 21 Dec 2020
 
 //---------------------------------DEFINITIONS
 
-#define MAX_STR_LEN 1024
+#define MAX_STR_LEN 256
 #define QUIT_COMMAND 'q'
 
 //---------------------------------GLOBALS
@@ -39,7 +39,7 @@ char ** g_all[3] = {g_generic, g_silly, NULL};
 //----------USER INPUT FUNCTIONS
 
 // Gets command line input from user
-int get_input(char * buffer);
+int get_input(char ** buffer);
 
 // Validates a string from user
 int validate_string(char * s);
@@ -66,14 +66,6 @@ int main(int argc, char * argv[])
 	// Seeding pseudorandom generation
 	srand(time(0));
 
-	for(int i = 0; g_all[i] != NULL; ++i)
-	{
-		for(int j = 0; g_all[i][j] != NULL; ++j)
-		{
-			printf("%s\n", g_all[i][j]);
-		}
-	}
-
 	center_print("WELCOME", 24);
 
 	char user_command;
@@ -92,18 +84,38 @@ int main(int argc, char * argv[])
 			}
 		}
 
-		printf("\nEnter the number of a function to test it: ");
+		printf("\nTo test a function, enter the number by its name.\n");
+		printf("Enter \"q\" to quit.\n");
+		printf(">>> ");
 
+		char * buffer = NULL;
 
+		int invalid = 1;
 
-		user_command = QUIT_COMMAND;
+		while(invalid)
+		{
+			if(!get_input(&buffer))
+			{
+				printf("get input succeeded\n");
+
+				if(!validate_char(buffer, &user_command))
+				{
+					invalid = 0;
+				}
+
+				printf("%s\n", buffer);
+
+				free(buffer);
+
+				printf("buffer freed\n");
+			}
+		}
+
+		printf("%c\n", user_command);
+
+		//user_command = QUIT_COMMAND;
 	}
 	while(user_command != QUIT_COMMAND);
-
-
-
-
-
 
 	/*
 	center_print("WELCOME", 24);
@@ -230,7 +242,7 @@ int main(int argc, char * argv[])
 
 //----------USER INPUT FUNCTIONS
 
-int get_input(char * buffer)
+int get_input(char ** buffer)
 {
 	char * temp_buffer = NULL;
 
@@ -240,17 +252,25 @@ int get_input(char * buffer)
 
 	if(getline(&temp_buffer, &temp_size, stdin) != -1)
 	{
-		if((buffer = (char *)malloc(MAX_STR_LEN * sizeof(char))) != NULL)
-		{
-			strncpy(buffer, temp_buffer, (MAX_STR_LEN - 1));
+		printf("Got line\n");
 
-			buffer[MAX_STR_LEN - 1] = '\0';
+		if((*buffer = (char *)malloc(MAX_STR_LEN * sizeof(char))) != NULL)
+		{
+			printf("allocated buffer\n");
+
+			strncpy(*buffer, temp_buffer, (MAX_STR_LEN - 1));
+
+			printf("copied to buffer\n");
+
+			(*buffer)[MAX_STR_LEN - 1] = '\0';
 
 			status = 0;
 		}
 	}
 
 	free(temp_buffer);
+
+	printf("freed line\n");
 
 	return status;
 }
