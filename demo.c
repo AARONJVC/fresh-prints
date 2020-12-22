@@ -28,22 +28,8 @@ Date Modified: 21 Dec 2020
 
 //---------------------------------GLOBALS
 
-/*
-char ** g_utilities[2] = {{"Array Zero Item Zero",
-												 "Array Zero Item One",
-												 "Array Zero Item Two",
-												 "Array Zero Item Three"},
-												{"Array One Item Zero",
-												 "Array One Item One",
-												 "Array One Item Two"},
-												{"Array Two Item Zero",
-												 "Array Two Item One",
-												 "Array Two Item Two",
-												 "Array Two Item Three",
-												 "Array Two Item Four"}};*/
-
+// Arrays to store information about the available functions
 char * g_generic[4] = {"Centered", "Timed", "Accelerated", NULL};
-
 char * g_silly[3] = {"Sleepy", "Scream", NULL};
 
 char ** g_all[3] = {g_generic, g_silly, NULL};
@@ -52,11 +38,17 @@ char ** g_all[3] = {g_generic, g_silly, NULL};
 
 //----------USER INPUT FUNCTIONS
 
-// Gets a string from user
-int get_string();
+// Gets command line input from user
+int get_input();
 
-// Gets an int or float from user
-int get_num();
+// Validates a string from user
+int validate_string();
+
+// Validates a float from user
+int validate_float();
+
+// Validates an int from user
+int validate_int();
 
 // Gets a float from user
 //int get_float();
@@ -101,6 +93,8 @@ int main(int argc, char * argv[])
 		}
 
 		printf("\nEnter the number of a function to test it: ");
+
+
 
 		user_command = QUIT_COMMAND;
 	}
@@ -236,12 +230,37 @@ int main(int argc, char * argv[])
 
 //----------USER INPUT FUNCTIONS
 
-int get_string()
+int get_input(char * buffer)
+{
+	char * temp_buffer = NULL;
+
+	size_t temp_size = 0;
+
+	int status = -1;
+
+	if(getline(&temp_buffer, &temp_size, stdin) != -1)
+	{
+		if((buffer = (char *)malloc(MAX_STR_LEN * sizeof(char))) != NULL)
+		{
+			strncpy(buffer, temp_buffer, (MAX_STR_LEN - 1));
+
+			buffer[MAX_STR_LEN - 1] = '\0';
+
+			status = 0;
+		}
+	}
+
+	free(temp_buffer);
+
+	return status;
+}
+
+int validate_string()
 {
 	return 0;
 }
 
-int get_num()
+int validate_float()
 {
 	return 0;
 }
