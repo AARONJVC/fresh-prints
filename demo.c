@@ -23,11 +23,43 @@ Date Modified: 20 Dec 2020
 
 //---------------------------------DEFINITIONS
 
+#define MAX_STR_LEN 1024
+#define QUIT_COMMAND 'q'
+
 //---------------------------------GLOBALS
+
+/*
+char ** g_utilities[2] = {{"Array Zero Item Zero",
+												 "Array Zero Item One",
+												 "Array Zero Item Two",
+												 "Array Zero Item Three"},
+												{"Array One Item Zero",
+												 "Array One Item One",
+												 "Array One Item Two"},
+												{"Array Two Item Zero",
+												 "Array Two Item One",
+												 "Array Two Item Two",
+												 "Array Two Item Three",
+												 "Array Two Item Four"}};*/
+
+char * g_generic[4] = {"Centered", "Timed", "Accelerated", NULL};
+
+char * g_silly[3] = {"Sleepy", "Scream", NULL};
+
+char ** g_all[3] = {g_generic, g_silly, NULL};
 
 //---------------------------------FUNCTION DECLARATIONS
 
-//----------X FUNCTIONS
+//----------USER INPUT FUNCTIONS
+
+// Gets a string from user
+int get_string();
+
+// Gets an int or float from user
+int get_num();
+
+// Gets a float from user
+//int get_float();
 
 //----------Y FUNCTIONS
 
@@ -42,13 +74,51 @@ int main(int argc, char * argv[])
 	// Seeding pseudorandom generation
 	srand(time(0));
 
+	for(int i = 0; g_all[i] != NULL; ++i)
+	{
+		for(int j = 0; g_all[i][j] != NULL; ++j)
+		{
+			printf("%s\n", g_all[i][j]);
+		}
+	}
+
+	center_print("WELCOME", 24);
+
+	char user_command;
+
+	do
+	{
+		int function_id = 0;
+
+		for(int i = 0; g_all[i] != NULL; ++i)
+		{
+			for(int j = 0; g_all[i][j] != NULL; ++j)
+			{
+				printf("%2i - %s\n", function_id, g_all[i][j]);
+
+				++function_id;
+			}
+		}
+
+		printf("\nEnter the number of a function to test it: ");
+
+		user_command = QUIT_COMMAND;
+	}
+	while(user_command != QUIT_COMMAND);
+
+
+
+
+
+
+	/*
 	center_print("WELCOME", 24);
 
 	timed_print("I'm a fast print\n", 2);
 
 	//timed_print("I'm a slow print\n", 10);
 
-	/*
+
 	timed_print("", 2);
 
 	timed_print("\n", 2);
@@ -112,7 +182,7 @@ int main(int argc, char * argv[])
 	timed_print("ABCDEFGHIJKLM\n", 0.0002);
 
 	timed_print("ABCDEFGHIJKLMN\n", 0.0002);
-	*/
+
 
 	timed_print("A long message printed in a short amount of time\n", 0.5);
 
@@ -157,13 +227,25 @@ int main(int argc, char * argv[])
 	accel_print("This line of text will print at a constant speed\n", 0.1, 0.1);
 
 	accel_print("This line of text will print faster and faster over time\n", 0.1, 0.0001);
+	*/
 
 	return EXIT_SUCCESS;
 }
 
 //---------------------------------FUNCTION DEFINITIONS
 
-//----------X FUNCTIONS
+//----------USER INPUT FUNCTIONS
+
+int get_string()
+{
+	return 0;
+}
+
+int get_num()
+{
+	return 0;
+}
+
 
 //----------Y FUNCTIONS
 
