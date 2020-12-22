@@ -9,7 +9,7 @@ Description:   Fun and useless print functions
 Author:        Aaron Van Cleave
 Institution:   n/a
 
-Date Modified: 20 Dec 2020
+Date Modified: 21 Dec 2020
 */
 
 //---------------------------------PREPROCESSOR DIRECTIVES
@@ -32,15 +32,15 @@ int sleepy_print(char * s, float f)
 
   int l = strlen(s);
 
-  int interval = f * 1000000;
+  int delay = f * 1000000;
 
   for(int i = 0; i < l; ++i)
   {
-		usleep(interval);
-
 		printf("%c ", s[i]);
 
 		fflush(stdout);
+
+    usleep(delay);
   }
 
 	return 0;

@@ -9,7 +9,7 @@ Description:   Fun and useless print functions
 Author:        Aaron Van Cleave
 Institution:   n/a
 
-Date Modified: 20 Dec 2020
+Date Modified: 21 Dec 2020
 */
 
 //---------------------------------PREPROCESSOR DIRECTIVES
@@ -31,6 +31,8 @@ int sleepy_print(char * s, float f);
 
 // Repeatedly prints string s letter-by-letter with initial delay d0 that changes to df over accel_i iterations
 // Continues printing with delay df for const_i iterations
+// Letters randomly capitalize with increasing probability during acceleration
+// Letters are all capitalized during the constant speed print
 int scream_print(char * s, float d0, float df, int accel_i, int const_i);
 
 //---------------------------------Y FUNCTIONS
