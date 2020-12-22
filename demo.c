@@ -150,6 +150,14 @@ int main(int argc, char * argv[])
 
 	scream_print("a", 0.1, 0, 32, 0);
 
+	accel_print("This line of text will print faster and faster over time\n", 0.1, 0.01);
+
+	accel_print("This line of text will print slower and slower over time\n", 0.1, 0.5);
+
+	accel_print("This line of text will print at a constant speed\n", 0.1, 0.1);
+
+	accel_print("This line of text will print faster and faster over time\n", 0.1, 0.0001);
+
 	return EXIT_SUCCESS;
 }
 

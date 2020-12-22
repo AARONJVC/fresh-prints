@@ -60,16 +60,16 @@ int timed_print(char * s, float f)
 
   int l = strlen(s);
 
-	int interval = (int)(f * 1000000);
+	int delay = (int)(f * 1000000);
 
 	// Avoid division by 0: print nothing in f seconds
 	if(l)
 	{
 		// Calculate time interval between each character in microseconds
-		interval /= (l + 1);
+		delay /= (l + 1);
 	}
 
-	usleep(interval);
+	usleep(delay);
 
 	// Only function calls with nonzero-length strings enter here
 	for(int i = 0; i < l; ++i)
@@ -78,11 +78,43 @@ int timed_print(char * s, float f)
 
 		fflush(stdout);
 
-		usleep(interval);
+		usleep(delay);
   }
 
 	return 0;
 }
+
+int accel_print(char * s, float d0, float df)
+{
+  // String length
+  int l = 0;
+
+  if(s == NULL || !(l = strlen(s)) || d0 < 0 || df < 0)
+  {
+    return -1;
+  }
+
+  // Conversion to microseconds
+  int d_usec = (int)(d0 * 1000000);
+  int df_usec = (int)(df * 1000000);
+
+  int delta = (df_usec - d_usec) / l;
+
+  for(int i = 0; i < l; ++i)
+  {
+    printf("%c", s[i]);
+
+    fflush(stdout);
+
+    usleep(d_usec);
+
+    // delay changes at a constant rate
+    d_usec += delta;
+  }
+
+  return 0;
+}
+
 
 //---------------------------------Z FUNCTIONS
 

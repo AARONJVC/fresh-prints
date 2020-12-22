@@ -29,9 +29,9 @@ Date Modified: 20 Dec 2020
 // Prints string s letter-by-letter, spaced apart, at intervals of f seconds
 int sleepy_print(char * s, float f);
 
-// Repeatedly prints string s at an initial speed v0 that accelerates to vf over accel_i iterations
-// Continues printing at speed vf for const_i iterations
-int scream_print(char * s, float v0, float vf, int accel_i, int const_i);
+// Repeatedly prints string s letter-by-letter with initial delay d0 that changes to df over accel_i iterations
+// Continues printing with delay df for const_i iterations
+int scream_print(char * s, float d0, float df, int accel_i, int const_i);
 
 //---------------------------------Y FUNCTIONS
 

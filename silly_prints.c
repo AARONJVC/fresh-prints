@@ -46,19 +46,19 @@ int sleepy_print(char * s, float f)
 	return 0;
 }
 
-int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
+int scream_print(char * s, float d0, float df, int accel_i, int const_i)
 {
   // String length
   int l = 0;
 
-  if(s == NULL || !(l = strlen(s)) || v0 < 0 || vf < 0 || accel_i < 0 || const_i < 0)
+  if(s == NULL || !(l = strlen(s)) || d0 < 0 || df < 0 || accel_i < 0 || const_i < 0)
   {
     return -1;
   }
 
   // Conversion to microseconds
-  int v_usec = (int)(v0 * 1000000);
-  int vf_usec = (int)(vf * 1000000);
+  int d_usec = (int)(d0 * 1000000);
+  int df_usec = (int)(df * 1000000);
 
   int delta = 0;
 
@@ -66,17 +66,17 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
 
   if(accel_i)
   {
-    // The change to apply to v0 to accelerate it to vf in accel_i iterations
-    delta = (vf_usec - v_usec) / accel_i;
+    // The change to apply to d0 to change it to df in accel_i iterations
+    delta = (df_usec - d_usec) / accel_i;
 
     //prob_delta = 1.0 / accel_i;
   }
 
-  //printf("V0: %i, VF: %i, PD: %i\n\n", v_usec, vf_usec, delta);
+  //printf("D0: %i, DF: %i, PD: %i\n\n", d_usec, df_usec, delta);
 
   float temp;
 
-  const float prob_const = (float)v_usec / RAND_MAX;
+  const float prob_const = (float)d_usec / RAND_MAX;
 
   for(int i = 0; i < accel_i; ++i)
   {
@@ -85,18 +85,18 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
         // Randomly print the jth char of s as uppercase or lowercase
         temp = (float)rand() * prob_const;
 
-        printf("%c", temp < v_usec ? s[j] : toupper(s[j]));
+        printf("%c", temp < d_usec ? s[j] : toupper(s[j]));
 
         fflush(stdout);
 
-        usleep(v_usec);
+        usleep(d_usec);
     }
 
     // Prob increases at a constant rate
     //prob += prob_delta;
 
-    // velocity changes at a constant rate
-    v_usec += delta;
+    // delay changes at a constant rate
+    d_usec += delta;
   }
 
   for(int i = 0; i < const_i; ++i)
@@ -107,7 +107,7 @@ int scream_print(char * s, float v0, float vf, int accel_i, int const_i)
 
         fflush(stdout);
 
-        usleep(vf_usec);
+        usleep(df_usec);
     }
   }
 
