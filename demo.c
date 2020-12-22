@@ -66,12 +66,18 @@ int main(int argc, char * argv[])
 {
 	//------------------------------SECTION
 
+	if(argc != 1)
+	{
+		printf("This program takes no arguments.\nUsage: %s\n", argv[0]);
+		return EXIT_SUCCESS;
+	}
+
 	// Seeding pseudorandom generation
 	srand(time(0));
 
 	char user_command;
 
-	center_print("WELCOME", 24);
+	center_print("WELCOME", 12);
 
 	show_list();
 
